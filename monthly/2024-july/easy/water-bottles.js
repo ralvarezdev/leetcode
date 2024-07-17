@@ -3,10 +3,10 @@
  * @param {number} numExchange
  * @return {number}
  */
-var numWaterBottles = function(numBottles, numExchange) {
-    let maxWaterBottles=numBottles;
+var numWaterBottles = function (numBottles, numExchange) {
+    let maxWaterBottles = numBottles;
 
-    while((numBottles-=numExchange)>=0){
+    while ((numBottles -= numExchange) >= 0) {
         maxWaterBottles++
         numBottles++
     }

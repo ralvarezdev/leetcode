@@ -2,33 +2,29 @@
  * @param {Object|Array} obj
  * @return {Object|Array}
  */
-var compactObject = function(obj) {
-    if(obj instanceof Array)
-    {
-        const newObj=new Array()
-        let counter=0;
+var compactObject = function (obj) {
+    if (obj instanceof Array) {
+        const newObj = new Array()
+        let counter = 0;
 
-        for(let element of obj)
-        {
-            let result=compactObject(element)
+        for (let element of obj) {
+            let result = compactObject(element)
 
-            if(result)
-                newObj[counter++]=result
+            if (result)
+                newObj[counter++] = result
         }
 
         return newObj
     }
 
-    if(obj instanceof Object)
-    {
-        const newObj={}
+    if (obj instanceof Object) {
+        const newObj = {}
 
-        for(let key in obj)
-        {
-            let result=compactObject(obj[key])
+        for (let key in obj) {
+            let result = compactObject(obj[key])
 
-            if(result)
-                newObj[key]=result
+            if (result)
+                newObj[key] = result
         }
 
         return newObj

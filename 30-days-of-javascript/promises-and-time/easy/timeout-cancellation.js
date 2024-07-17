@@ -4,12 +4,10 @@
  * @param {number} t
  * @return {Function}
  */
-var cancellable = function (fn, args, t)
-{
+var cancellable = function (fn, args, t) {
     const timeout = setTimeout(() => fn(...args), t);
 
-    return function ()
-    {
+    return function () {
         clearTimeout(timeout);
     };
 };
@@ -26,11 +24,11 @@ var cancellable = function (fn, args, t)
  *      const diff = Math.floor(performance.now() - start);
  *      result.push({"time": diff, "returned": fn(...argsArr)});
  *  }
- *       
+ *
  *  const cancel = cancellable(log, args, t);
  *
  *  const maxT = Math.max(t, cancelTimeMs);
- *           
+ *
  *  setTimeout(cancel, cancelTimeMs);
  *
  *  setTimeout(() => {

@@ -2,23 +2,23 @@
  * @param {number[]} nums
  * @return {void}
  */
-var ArrayWrapper = function(nums) {
-    this.nums=nums
-    this.total=nums.length===0?0: nums.reduce((accum, value)=>accum+=value)
+var ArrayWrapper = function (nums) {
+    this.nums = nums
+    this.total = nums.length === 0 ? 0 : nums.reduce((accum, value) => accum += value)
 };
 
 /**
  * @return {number}
  */
-ArrayWrapper.prototype.valueOf = function() {
+ArrayWrapper.prototype.valueOf = function () {
     return this.total
 }
 
 /**
  * @return {string}
  */
-ArrayWrapper.prototype.toString = function() {
-    return "[" +this.nums + "]"
+ArrayWrapper.prototype.toString = function () {
+    return "[" + this.nums + "]"
 }
 
 /**

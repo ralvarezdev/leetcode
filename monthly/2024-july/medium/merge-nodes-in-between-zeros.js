@@ -9,18 +9,17 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var mergeNodes = function(head) {
-    let pivotNode=head.next, accum=pivotNode.val,currNode=pivotNode
+var mergeNodes = function (head) {
+    let pivotNode = head.next, accum = pivotNode.val, currNode = pivotNode
 
-    while((currNode=currNode.next)!==null){
-        if(currNode.val!==0)
-            accum+=currNode.val
-        else
-        {
-            pivotNode.val=accum
-            pivotNode.next=currNode.next
-            pivotNode=pivotNode.next
-            accum=0
+    while ((currNode = currNode.next) !== null) {
+        if (currNode.val !== 0)
+            accum += currNode.val
+        else {
+            pivotNode.val = accum
+            pivotNode.next = currNode.next
+            pivotNode = pivotNode.next
+            accum = 0
         }
     }
 

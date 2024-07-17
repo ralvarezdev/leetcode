@@ -9,52 +9,49 @@
  * @param {ListNode} head
  * @return {number[]}
  */
-var nodesBetweenCriticalPoints = function(head) {
-    let prevVal=head.val, currVal=null, nextVal=null
+var nodesBetweenCriticalPoints = function (head) {
+    let prevVal = head.val, currVal = null, nextVal = null
 
-    const criticalPos=[]
-    const criticalDiff= new Array(2)
-    counter=1
+    const criticalPos = []
+    const criticalDiff = new Array(2)
+    counter = 1
 
-    const checkVal=()=>{
-        if((currVal>nextVal&&currVal>prevVal)||(currVal<nextVal&&currVal<prevVal))
+    const checkVal = () => {
+        if ((currVal > nextVal && currVal > prevVal) || (currVal < nextVal && currVal < prevVal))
             criticalPos.push(counter)
     }
 
-    while((head=head.next)!==null)
-    {
+    while ((head = head.next) !== null) {
         counter++
 
-        if(currVal!==null && nextVal!==null){
-            prevVal=currVal
-            currVal=nextVal
-            nextVal=head.val
+        if (currVal !== null && nextVal !== null) {
+            prevVal = currVal
+            currVal = nextVal
+            nextVal = head.val
 
             checkVal()
-        }
+        } else if (currVal === null)
+            currVal = head.val
 
-        else if(currVal===null)
-            currVal=head.val
-
-        else{
+        else {
             nextVal = head.val
-    checkVal()
+            checkVal()
         }
     }
 
-    if(criticalPos.length<2)
-        return [-1,-1]
+    if (criticalPos.length < 2)
+        return [-1, -1]
 
-    criticalDiff[1]=criticalPos[criticalPos.length-1]-criticalPos[0]
+    criticalDiff[1] = criticalPos[criticalPos.length - 1] - criticalPos[0]
 
-    let min=null
-    for(let i=0, val;i< criticalPos.length-1;i++){
-        val=criticalPos[i+1]-criticalPos[i]
+    let min = null
+    for (let i = 0, val; i < criticalPos.length - 1; i++) {
+        val = criticalPos[i + 1] - criticalPos[i]
 
-        if(val<min||min===null)
-            min=val
+        if (val < min || min === null)
+            min = val
     }
-    criticalDiff[0]=min
+    criticalDiff[0] = min
 
     return criticalDiff
 };

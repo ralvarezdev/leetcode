@@ -2,10 +2,9 @@ class EventEmitter {
     #map
     #lastId
 
-    constructor()
-    {
-        this.#map=new Map()
-        this.#lastId=new Map()
+    constructor() {
+        this.#map = new Map()
+        this.#lastId = new Map()
     }
 
     /**
@@ -14,12 +13,12 @@ class EventEmitter {
      * @return {Object}
      */
     subscribe(eventName, callback) {
-        const id=this.#map.has(eventName)?this.#lastId.get(eventName)+1:0
+        const id = this.#map.has(eventName) ? this.#lastId.get(eventName) + 1 : 0
 
-        if(id!==0)
-            this.#lastId.set(eventName,id)
+        if (id !== 0)
+            this.#lastId.set(eventName, id)
 
-        else{
+        else {
             this.#lastId.set(eventName, id)
             this.#map.set(eventName, new Map())
         }
@@ -27,7 +26,7 @@ class EventEmitter {
         this.#map.get(eventName).set(id, callback)
 
         return {
-            unsubscribe: () =>this.#map.get(eventName).delete(id)
+            unsubscribe: () => this.#map.get(eventName).delete(id)
         };
     }
 
@@ -37,14 +36,14 @@ class EventEmitter {
      * @return {Array}
      */
     emit(eventName, args = []) {
-        const results= new Array()
-        const callbacks=this.#map.get(eventName)
+        const results = new Array()
+        const callbacks = this.#map.get(eventName)
 
-        if(callbacks){
-            const iter=callbacks.values()
+        if (callbacks) {
+            const iter = callbacks.values()
             let value
 
-            while(value=iter.next().value)
+            while (value = iter.next().value)
                 results.push(value(...args))
         }
 

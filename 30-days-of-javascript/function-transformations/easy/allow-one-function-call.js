@@ -2,12 +2,10 @@
  * @param {Function} fn
  * @return {Function}
  */
-var once = function (fn)
-{
+var once = function (fn) {
     let called = false;
 
-    return function (...args)
-    {
+    return function (...args) {
         if (called)
             return undefined;
 
